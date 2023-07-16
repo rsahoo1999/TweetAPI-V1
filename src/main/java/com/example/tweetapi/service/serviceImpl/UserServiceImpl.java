@@ -49,6 +49,12 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
+    @Override
+    public UserDTO getById(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+        return mapToDto(user);
+    }
+
     //Convert the entity into DTO
     public UserDTO mapToDto(User user){
         UserDTO userDTO = modelMapper.map(user, UserDTO.class);

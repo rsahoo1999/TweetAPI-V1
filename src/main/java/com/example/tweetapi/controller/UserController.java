@@ -32,6 +32,13 @@ public class UserController {
         return userDTOS;
     }
 
+    //http://localhost:8080/api/users/{id}/findById
+    @GetMapping("/{id}/findById")
+    public ResponseEntity<?> getById(@PathVariable(name = "id") Long id){
+        UserDTO userDTO = userService.getById(id);
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    }
+
     //http://localhost:8080/api/users/{id}/update
     @PutMapping("/{id}/update")
     public ResponseEntity<?> creatUpdate(@PathVariable(name = "id") Long id, @RequestBody UserDTO userDTO){
